@@ -1,0 +1,5 @@
+D:\CODE3156\Building_simulator_2\Building_Simulator_2\Building_Simulator_2\bin\Building_Simulator_2.dll
+D:\CODE3156\Building_simulator_2\Building_Simulator_2\Building_Simulator_2\bin\Building_Simulator_2.pdb
+D:\CODE3156\Building_simulator_2\Building_Simulator_2\Building_Simulator_2\obj\Debug32\Building_Simulator_2.csprojResolveAssemblyReference.cache
+D:\CODE3156\Building_simulator_2\Building_Simulator_2\Building_Simulator_2\obj\Debug32\Building_Simulator_2.dll
+D:\CODE3156\Building_simulator_2\Building_Simulator_2\Building_Simulator_2\obj\Debug32\Building_Simulator_2.pdb
