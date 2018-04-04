@@ -27,49 +27,72 @@ namespace Building_Simulator_2
         ///<returns>The command name as it appears on the Rhino command line.</returns>
         public override string EnglishName
         {
-            get { return "BuildingSimulator2Command"; }
+            get { return "BuildingSimulator"; }
         }
 
         protected override Result RunCommand(RhinoDoc doc, RunMode mode)
         {
-            // TODO: start here modifying the behaviour of your command.
-            // ---
-            RhinoApp.WriteLine("The {0} command will add a line right now.", EnglishName);
+           
+            RhinoApp.WriteLine("Building simulator begins");
 
-            Point3d pt0;
-            using (GetPoint getPointAction = new GetPoint())
+          
+
+            //getBuildingSite();    // select curve and set as site explode and measure lengths
+            //GetLengths();                        // check the max and the min of the site, is it the right size for building
+            //FindFront();                                  // set front/side and back parameters
+            // BreakUpSite();                               //create the deep soil percentage
+            //FindBuildingParameters();                                    //take out the other percentage of site thats buildable
+            //SplitBuilding();                                             // create two buildings
+            //CreateBlocks();                                            // extrude up to maximums storys 
+            //CreateStoreys                                        //divide for levels                                     
+            // set colour scheme for different 
+           
+            
+            
+            
+          
+        {
+        
+            GetObject obj = new GetObject();
+        obj.GeometryFilter = Rhino.DocObjects.ObjectType.Curve;
+            obj.SetCommandPrompt("Please select a curve represent the site.");
+
+            GetResult res = obj.Get();
+
+        Curve site;
+
+            if (res != GetResult.Object)
             {
-                getPointAction.SetCommandPrompt("Please select the start point");
-                if (getPointAction.Get() != GetResult.Point)
-                {
-                    RhinoApp.WriteLine("No start point was selected.");
-                    return getPointAction.CommandResult();
-                }
-                pt0 = getPointAction.Point();
-            }
+                RhinoApp.WriteLine(" the user did not select a curve");
+                return Result.Failure;
 
-            Point3d pt1;
-            using (GetPoint getPointAction = new GetPoint())
+           }
+
+            if (obj.ObjectCount == 1)
+
+             {
+                site = obj.Object(0).Curve();
+
+}
+
+            else
             {
-                getPointAction.SetCommandPrompt("Please select the end point");
-                getPointAction.SetBasePoint(pt0, true);
-                getPointAction.DynamicDraw +=
-                  (sender, e) => e.Display.DrawLine(pt0, e.CurrentPoint, System.Drawing.Color.DarkRed);
-                if (getPointAction.Get() != GetResult.Point)
-                {
-                    RhinoApp.WriteLine("No end point was selected.");
-                    return getPointAction.CommandResult();
-                }
-                pt1 = getPointAction.Point();
+                return Result.Failure;
+            
             }
-
-            doc.Objects.AddLine(pt0, pt1);
             doc.Views.Redraw();
-            RhinoApp.WriteLine("The {0} command added one line to the document.", EnglishName);
-
-            // ---
+            RhinoApp.WriteLine("simulator is complete");
 
             return Result.Success;
+
+
+
+
+     
+        }
+
+      
+
         }
     }
 }
